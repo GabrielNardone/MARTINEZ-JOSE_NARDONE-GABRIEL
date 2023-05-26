@@ -1,20 +1,19 @@
 package service.test;
 
 
-import dao.impl.OdontologoDao;
+import dao.impl.OdotologoDao;
 import entity.Odontologo;
 import org.junit.jupiter.api.Test;
 import service.OdontologoService;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class OdontologoServiceTest {
 
 
-    private OdontologoService odontologoService = new OdontologoService(new OdontologoDao());
-
+    private OdontologoService odontologoService = new OdontologoService(new OdotologoDao());
 
 
     @Test
@@ -28,7 +27,7 @@ class OdontologoServiceTest {
 
         List<Odontologo> odontologoTest = odontologoService.listarOdontologos();
 
-        assertFalse(odontologoTest.isEmpty());
+        assertTrue(odontologoTest.size() >= 5);
 
 
     }

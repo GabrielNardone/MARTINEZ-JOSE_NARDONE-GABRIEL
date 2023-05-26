@@ -10,12 +10,12 @@ public class Application {
             Class.forName("org.h2.Driver");
             connection = DriverManager.getConnection("jdbc:h2:~/examen;INIT= RUNSCRIPT FROM 'create.sql'", "sa", "sa");
 
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             try {
                 connection.close();
-            } catch (Exception ex){
+            } catch (Exception ex) {
                 ex.printStackTrace();
             }
         }

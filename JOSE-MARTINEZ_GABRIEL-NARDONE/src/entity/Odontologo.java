@@ -37,7 +37,7 @@ public class Odontologo {
 
     @Override
     public String toString() {
-        return "Odontologo{" +
+        return "\nOdontologo{" +
                 "nroMatricula='" + nroMatricula + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
