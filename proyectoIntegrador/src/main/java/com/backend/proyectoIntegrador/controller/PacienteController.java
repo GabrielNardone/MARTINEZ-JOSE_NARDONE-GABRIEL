@@ -1,8 +1,11 @@
 package com.backend.proyectoIntegrador.controller;
 
+import com.backend.proyectoIntegrador.dto.PacienteDto;
 import com.backend.proyectoIntegrador.entity.Paciente;
 import com.backend.proyectoIntegrador.service.IPacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,23 +21,39 @@ public class PacienteController {
     }
 
     @PostMapping("/register")
-    public Paciente registrarPaciente(@RequestBody Paciente paciente) {
-        return pacienteService.guardarPaciente(paciente);
+    public ResponseEntity<PacienteDto> registrarPaciente(@RequestBody Paciente paciente) {
+        ResponseEntity<PacienteDto> respuesta;
+        PacienteDto pacienteDto = pacienteService.guardarPaciente(paciente);
+        if (pacienteDto != null) respuesta = new ResponseEntity<>(pacienteDto, null, HttpStatus.CREATED);
+        else respuesta = ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        return respuesta;
     }
 
     @PutMapping("/update")
-    public Paciente actualizarPaciente(@RequestBody Paciente paciente) {
-        return pacienteService.actualizarPaciente(paciente);
+    public ResponseEntity<PacienteDto> actualizarPaciente(@RequestBody Paciente paciente) {
+        ResponseEntity<PacienteDto> respuesta;
+        PacienteDto pacienteDto = pacienteService.actualizarPaciente(paciente);
+        if (pacienteDto != null) respuesta = new ResponseEntity<>(pacienteDto, null, HttpStatus.OK);
+        else respuesta = ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        return respuesta;
     }
 
     @GetMapping
-    public List<Paciente> listarTodos() {
-        return pacienteService.listarPacientes();
+    public ResponseEntity<List<PacienteDto>> listarTodos() {
+        ResponseEntity<List<PacienteDto>> respuesta;
+        List<PacienteDto> lista = pacienteService.listarPacientes();
+        if (lista != null) respuesta = new ResponseEntity<>(lista, null, HttpStatus.OK);
+        else respuesta = ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        return respuesta;
     }
 
     @GetMapping("/{id}")
-    public Paciente buscarPacientePorId(@PathVariable int id) {
-        return pacienteService.buscarPacientePorId(id);
+    public ResponseEntity<PacienteDto> buscarPacientePorId(@PathVariable int id) {
+        ResponseEntity<PacienteDto> respuesta;
+        PacienteDto pacienteDto = pacienteService.buscarPacientePorId(id);
+        if (pacienteDto != null) respuesta = new ResponseEntity<>(pacienteDto, null, HttpStatus.OK);
+        else respuesta = ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        return respuesta;
     }
 
     @DeleteMapping("/delete/{id}")

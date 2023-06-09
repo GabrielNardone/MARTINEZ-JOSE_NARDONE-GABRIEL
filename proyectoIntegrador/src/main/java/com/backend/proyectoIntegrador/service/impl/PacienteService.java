@@ -1,6 +1,7 @@
 package com.backend.proyectoIntegrador.service.impl;
 
 
+import com.backend.proyectoIntegrador.dto.PacienteDto;
 import com.backend.proyectoIntegrador.entity.Paciente;
 import com.backend.proyectoIntegrador.repository.IDao;
 import com.backend.proyectoIntegrador.service.IPacienteService;
@@ -19,30 +20,29 @@ public class PacienteService implements IPacienteService {
         this.pacienteIDao = pacienteIDao;
     }
 
-
     @Override
-    public List<Paciente> listarPacientes() {
-        return pacienteIDao.listarTodos();
+    public List<PacienteDto> listarPacientes() {
+        return pacienteIDao.listarTodos().stream().map(p -> PacienteDto.fromPaciente(p)).toList();
     }
 
     @Override
-    public Paciente buscarPacientePorDni(String dni) {
-        return pacienteIDao.buscarPorCriterio(dni);
+    public PacienteDto buscarPacientePorDni(String dni) {
+        return PacienteDto.fromPaciente(pacienteIDao.buscarPorCriterio(dni));
     }
 
     @Override
-    public Paciente buscarPacientePorId(int id) {
-        return pacienteIDao.buscarPorId(id);
+    public PacienteDto buscarPacientePorId(int id) {
+        return PacienteDto.fromPaciente(pacienteIDao.buscarPorId(id));
     }
 
     @Override
-    public Paciente guardarPaciente(Paciente paciente) {
-        return pacienteIDao.guardar(paciente);
+    public PacienteDto guardarPaciente(Paciente paciente) {
+        return PacienteDto.fromPaciente(pacienteIDao.guardar(paciente));
     }
 
     @Override
-    public Paciente actualizarPaciente(Paciente paciente) {
-        return pacienteIDao.actualizar(paciente);
+    public PacienteDto actualizarPaciente(Paciente paciente) {
+        return PacienteDto.fromPaciente(pacienteIDao.actualizar(paciente));
     }
 
     @Override

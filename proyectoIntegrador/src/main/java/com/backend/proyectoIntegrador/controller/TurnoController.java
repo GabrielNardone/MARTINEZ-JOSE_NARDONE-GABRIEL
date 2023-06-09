@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/turnos")
+@RequestMapping("/dates")
 public class TurnoController {
     private final ITurnoService turnoService;
 
@@ -27,7 +27,7 @@ public class TurnoController {
         return respuesta;
     }
 
-    @PostMapping("/registrar")
+    @PostMapping("/register")
     public ResponseEntity<TurnoDto> guardarTurno(@RequestBody Turno turno) {
         ResponseEntity<TurnoDto> respuesta;
         TurnoDto turnoDto = turnoService.guardarTurno(turno);
@@ -36,12 +36,12 @@ public class TurnoController {
         return respuesta;
     }
 
-    @DeleteMapping("/eliminar/{id}")
+    @DeleteMapping("/delete/{id}")
     public void eliminarTurno(@PathVariable int id) {
         turnoService.eliminarTurno(id);
     }
 
-    @PutMapping("/actualizar")
+    @PutMapping("/update")
     public ResponseEntity<TurnoDto> actualizarTurno(@RequestBody Turno turno) {
         ResponseEntity<TurnoDto> respuesta;
         TurnoDto turnoDto = turnoService.actualizarTurno(turno);

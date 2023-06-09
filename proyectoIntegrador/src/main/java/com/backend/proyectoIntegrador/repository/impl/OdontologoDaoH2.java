@@ -5,13 +5,13 @@ import com.backend.proyectoIntegrador.repository.H2Connection;
 import com.backend.proyectoIntegrador.repository.IDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+@Repository
 public class OdontologoDaoH2 implements IDao<Odontologo> {
     private static Logger LOGGER = LoggerFactory.getLogger(OdontologoDaoH2.class);
 
