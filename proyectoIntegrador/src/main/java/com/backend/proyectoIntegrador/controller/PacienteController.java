@@ -38,7 +38,7 @@ public class PacienteController {
         return respuesta;
     }
 
-    @GetMapping
+    @GetMapping()
     public ResponseEntity<List<PacienteDto>> listarTodos() {
         ResponseEntity<List<PacienteDto>> respuesta;
         List<PacienteDto> lista = pacienteService.listarPacientes();

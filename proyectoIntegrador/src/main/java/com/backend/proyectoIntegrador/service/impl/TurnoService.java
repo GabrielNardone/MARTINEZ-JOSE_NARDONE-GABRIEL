@@ -6,9 +6,10 @@ import com.backend.proyectoIntegrador.repository.IDao;
 import com.backend.proyectoIntegrador.service.ITurnoService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class TurnoService implements ITurnoService {
     private IDao<Turno> turnoIDao;
     private ObjectMapper objectMapper;
