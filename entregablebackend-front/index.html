@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title>Alta odontologo</title>
+</head>
+<body>
+
+    <div class="containter">
+
+        <header class="header">
+            <div class="navi">
+                <h2 class="logo"><img src="/img/pngwing.com.png" alt="Logo">Clínica Odontológica</h2>
+                <nav class="navigation">
+                    <a href="#">Listar</a>
+                    <button class="btnlogin">Login</button>
+                </nav>
+            </div>
+        </header>
+
+        <form action="form" class="form">
+            <div class="title">
+                <h1>Agregar odontólogo</h1>
+            </div>
+
+            <label for="name" class="form__label">Nombre:</label>
+            <input type="text" class="form__input" name="texto" placeholder="Ingrese el nombre" id="name" required>
+
+            <label for="apellido" class="form__label">Apellido:</label>
+            <input type="text" class="form__input" name="apellido" placeholder="Ingrese el apellido" id="apellido" required>
+
+            <label class="form__label" for="matricula">Matrícula:</label>
+            <input type="number" class="form__input" id="matricula" placeholder="Ingrese la matrícula" required>
+
+            <button type="submit" class="registrar">Registrar</button>      
+
+        </form>
+    </div>
+    
+</body>
+</html>
