@@ -1,29 +1,37 @@
 package com.backend.proyectoIntegrador.dto;
 
-import com.backend.proyectoIntegrador.entity.Paciente;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.time.LocalDate;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PacienteDto {
+    private Long id;
     private String nombre;
     private String apellido;
     private String dni;
     private LocalDate fechaIngreso;
-    private String domicilio;
-    private String odontologo;
+    private DomicilioDto domicilioDto;
 
-    public PacienteDto(String nombre, String apellido, String dni, LocalDate fechaIngreso, String domicilio, String odontologo) {
+    public PacienteDto(Long id, String nombre, String apellido, String dni, LocalDate fechaIngreso, DomicilioDto domicilioDto) {
+        this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
         this.fechaIngreso = fechaIngreso;
-        this.domicilio = domicilio;
-        this.odontologo = odontologo;
+        this.domicilioDto = domicilioDto;
     }
 
     public PacienteDto() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -58,25 +66,11 @@ public class PacienteDto {
         this.fechaIngreso = fechaIngreso;
     }
 
-    public String getDomicilio() {
-        return domicilio;
+    public DomicilioDto getDomicilioDto() {
+        return domicilioDto;
     }
 
-    public void setDomicilio(String domicilio) {
-        this.domicilio = domicilio;
-    }
-
-    public String getOdontologo() {
-        return odontologo;
-    }
-
-    public void setOdontologo(String odontologo) {
-        this.odontologo = odontologo;
-    }
-
-    public static PacienteDto fromPaciente(Paciente paciente) {
-        String odontologo = paciente.getOdontologo().getNombre() + " " + paciente.getOdontologo().getApellido();
-        String domicilio = paciente.getDomicilio().getCalle() + " " + paciente.getDomicilio().getLocalidad();
-        return new PacienteDto(paciente.getNombre(), paciente.getApellido(), paciente.getDni(), paciente.getFechaIngreso(), domicilio, odontologo);
+    public void setDomicilioDto(DomicilioDto domicilioDto) {
+        this.domicilioDto = domicilioDto;
     }
 }

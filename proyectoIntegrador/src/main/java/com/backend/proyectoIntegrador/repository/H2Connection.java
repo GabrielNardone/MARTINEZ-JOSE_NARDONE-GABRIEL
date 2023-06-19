@@ -1,4 +1,4 @@
-package com.backend.proyectoIntegrador.repository;
+/*package com.backend.proyectoIntegrador.repository;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -16,3 +16,4 @@ public class H2Connection {
         return DriverManager.getConnection("jdbc:h2:~/final-project;INIT=RUNSCRIPT FROM 'create.sql'", "sa", "sa");
     }
 }
+*/

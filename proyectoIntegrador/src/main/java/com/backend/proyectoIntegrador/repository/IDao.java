@@ -1,4 +1,4 @@
-package com.backend.proyectoIntegrador.repository;
+/*package com.backend.proyectoIntegrador.repository;
 
 import java.util.List;
 
@@ -17,3 +17,4 @@ public interface IDao<T> {
     T actualizar(T t);
 
 }
+*/

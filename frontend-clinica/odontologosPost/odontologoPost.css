@@ -1,11 +1,11 @@
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family:'Montserrat', Verdana, sans-serif;
+    font-family: 'Montserrat', Verdana, sans-serif;
 }
 
-html{
+html {
     font-size: 62.5%;
 }
 
@@ -14,11 +14,11 @@ body {
     background: url(/img/bkgrnd.jpg);
     background-attachment: fixed;
     background-size: cover;
-   
+
 }
 
-.header .navi{
-    
+.header .navi {
+
     top: 0;
     left: 0;
     width: 100%;
@@ -27,29 +27,29 @@ body {
     justify-content: space-between;
     align-items: center;
     z-index: 99;
-   
+
 
 }
 
-.logo{
+.logo {
     padding-left: 5px;
     color: antiquewhite;
     font-size: 2.5rem;
     font-weight: 500;
-    
+
 }
 
 .navigation a {
-    position:relative;
+    position: relative;
     font-size: 1.5rem;
-    color:antiquewhite;
+    color: antiquewhite;
     text-decoration: none;
     font-weight: 500;
     margin-left: 40px;
 
 }
 
-.navigation .btnlogin{
+.navigation .btnlogin {
     width: 130px;
     height: 50px;
     background: transparent;
@@ -64,12 +64,12 @@ body {
     transition: all .5s ease;
 }
 
-.btnlogin:hover{
+.btnlogin:hover {
     background: #2756c296;
 
 }
 
-.navigation a::after{
+.navigation a::after {
     content: '';
     position: absolute;
     width: 100%;
@@ -83,14 +83,15 @@ body {
     transition: .5s;
 }
 
-.navigation a:hover::after{
+.navigation a:hover::after {
     transform-origin: left;
     transform: scaleX(1);
 }
 
 
 
-.form {
+.registrarForm,
+.formActualizar {
     width: 50%;
     min-width: 300px;
     background: rgb(0, 0, 0, 0.491);
@@ -101,7 +102,7 @@ body {
 
 }
 
-h1 {
+h2 {
     text-align: center;
     padding-bottom: 16px;
     font-weight: 500;
@@ -109,7 +110,10 @@ h1 {
 
 
 
-.form__input{
+.nombreInput,
+.apellidoInput,
+.matriculaInput,
+.idInput {
     width: 100%;
     height: 45px;
     background: rgba(0, 0, 0, 0.7);
@@ -130,7 +134,7 @@ h1 {
     padding-bottom: 5px;
 }
 
-.registrar{
+.actualizar, .registrar {
     width: 100%;
     height: 50px;
     background-color: #2755c2;
@@ -147,7 +151,30 @@ h1 {
 
 }
 
-.registrar:hover{
+.registrar:hover {
     background: #2756c296;
+}
 
+.errorMensaje {
+    width: 100%;
+    height: 50px;
+    color: #D8000C;
+    background-color: rgba(216, 0, 12, .2);
+    padding: 10px;
+    outline: none;
+    border: none;
+    font-size: 1.8rem;
+    border-radius: 6px
+}
+
+.exitoMensaje {
+    width: 100%;
+    height: 50px;
+    color: #38E54D;
+    background-color: rgba(56, 229, 77, .3);
+    padding: 10px;
+    outline: none;
+    border: none;
+    font-size: 1.8rem;
+    border-radius: 6px
 }

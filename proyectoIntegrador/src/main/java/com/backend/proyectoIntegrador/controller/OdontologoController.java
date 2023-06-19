@@ -9,7 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-@CrossOrigin(origins = "http://127.0.0.1:5500") //Establecer aquí el puerto desde donde se hace la petición para darle el permiso
+
+@CrossOrigin(origins = "http://127.0.0.1:5500")
+//Establecer aquí el puerto desde donde se hace la petición para darle el permiso
 @RestController
 @RequestMapping("/dentist")
 public class OdontologoController {

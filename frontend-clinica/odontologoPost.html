@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/odontologoPost.css">
+    <link rel="stylesheet" href="./odontologosPost/odontologoPost.css">
     <script type="text/javascript" src="/odontologoPost.js"></script>
     <title>Alta odontologo</title>
 </head>
@@ -23,20 +23,20 @@
             </div>
         </header>
 
-        <form action="form" class="form">
+        <form action="submit" class="registrarForm">
             <div class="title">
-                <h1>Agregar odontólogo</h1>
+                <h2>Agregar odontólogo</h2>
             </div>
 
             <label for="name" class="form__label">Nombre:</label>
-            <input type="text" class="form__input" name="texto" placeholder="Ingrese el nombre" id="name" required>
+            <input type="text" class="nombreInput" name="texto" placeholder="Ingrese el nombre" id="name" required>
 
             <label for="apellido" class="form__label">Apellido:</label>
-            <input type="text" class="form__input" name="apellido" placeholder="Ingrese el apellido" id="apellido"
+            <input type="text" class="apellidoInput" name="apellido" placeholder="Ingrese el apellido" id="apellido"
                 required>
 
             <label class="form__label" for="matricula">Matrícula:</label>
-            <input type="number" class="form__input" id="matricula" placeholder="Ingrese la matrícula" required>
+            <input type="number" class="matriculaInput" id="matricula" placeholder="Ingrese la matrícula" required>
 
             <button type="submit" class="registrar">Registrar</button>
 

@@ -1,44 +1,41 @@
 package com.backend.proyectoIntegrador.entity;
 
-import java.time.LocalDateTime;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
+import javax.persistence.*;
+import javax.validation.constraints.FutureOrPresent;
+import java.time.LocalDate;
+
+@Entity
+@Table(name = "DATES")
 public class Turno {
-    private int id;
-    private Odontologo odontologo;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @FutureOrPresent
+    private LocalDate fechaAsistencia;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "paciente_id")
     private Paciente paciente;
-    private LocalDateTime fechayhora;
 
-    public Turno(int id, Odontologo odontologo, Paciente paciente, LocalDateTime fechayhora) {
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "odontologo_id")
+    private Odontologo odontologo;
+
+    public Turno () {}
+
+    public Turno(Long id, LocalDate fechaAsistencia, Paciente paciente, Odontologo odontologo) {
         this.id = id;
-        this.odontologo = odontologo;
+        this.fechaAsistencia = fechaAsistencia;
         this.paciente = paciente;
-        this.fechayhora = fechayhora;
-    }
-
-    public Turno(Odontologo odontologo, Paciente paciente, LocalDateTime fechayhora) {
         this.odontologo = odontologo;
-        this.paciente = paciente;
-        this.fechayhora = fechayhora;
     }
 
-    public Turno() {
-
-    }
-
-    public int getId() {
+    public Long getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Odontologo getOdontologo() {
-        return odontologo;
-    }
-
-    public void setOdontologo(Odontologo odontologo) {
-        this.odontologo = odontologo;
     }
 
     public Paciente getPaciente() {
@@ -49,21 +46,19 @@ public class Turno {
         this.paciente = paciente;
     }
 
-    public LocalDateTime getFechayhora() {
-        return fechayhora;
+    public Odontologo getOdontologo() {
+        return odontologo;
     }
 
-    public void setFechayhora(LocalDateTime fechayhora) {
-        this.fechayhora = fechayhora;
+    public void setOdontologo(Odontologo odontologo) {
+        this.odontologo = odontologo;
     }
 
-    @Override
-    public String toString() {
-        return "Turno{" +
-                "id=" + id +
-                ", odontologo=" + odontologo +
-                ", paciente=" + paciente +
-                ", fechayhora=" + fechayhora +
-                '}';
+    public LocalDate getFechaAsistencia() {
+        return fechaAsistencia;
+    }
+
+    public void setFechaAsistencia(LocalDate fechaAsistencia) {
+        this.fechaAsistencia = fechaAsistencia;
     }
 }

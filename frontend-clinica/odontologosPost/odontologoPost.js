@@ -2,16 +2,17 @@ window.addEventListener('load', function () {
 
     //Al cargar la pagina buscamos y obtenemos el formulario donde estarán
     //los datos que el usuario cargará del nuevo odontologo
-    const formulario = document.querySelector('#add_new_odontologo');
+    const formulario = document.querySelector('.registrarForm');
 
     //Ante un submit del formulario se ejecutará la siguiente funcion
     formulario.addEventListener('submit', function (event) {
+        event.preventDefault()
 
        //creamos un JSON que tendrá los datos del nuevo odontologo
         const formData = {
-            nombre: document.querySelector('#nombre').value,
-            apellido: document.querySelector('#apellido').value,
-            matricula: document.querySelector('#matricula').value,
+            nombre: document.querySelector('.nombreInput').value,
+            apellido: document.querySelector('.apellidoInput').value,
+            matricula: document.querySelector('.matriculaInput').value,
 
         };
         //invocamos utilizando la función fetch la API odontologos con el método POST que guardará
@@ -34,8 +35,8 @@ window.addEventListener('load', function () {
                      '<button type="button" class="close" data-dismiss="alert">&times;</button>' +
                      '<strong></strong> Odontólogo registrado </div>'
 
-                 document.querySelector('#response').innerHTML = successAlert;
-                 document.querySelector('#response').style.display = "block";
+                 document.querySelector('.container').innerHTML = successAlert;
+                 document.querySelector('.container').style.display = "block";
                  resetUploadForm();
 
             })
@@ -46,17 +47,17 @@ window.addEventListener('load', function () {
                                      '<button type="button" class="close" data-dismiss="alert">&times;</button>' +
                                      '<strong> Error intente nuevamente</strong> </div>'
 
-                      document.querySelector('#response').innerHTML = errorAlert;
-                      document.querySelector('#response').style.display = "block";
+                      document.querySelector('.container').innerHTML = errorAlert;
+                      document.querySelector('.container').style.display = "block";
                      //se dejan todos los campos vacíos por si se quiere ingresar otro odontologo
                      resetUploadForm();})
     });
 
 
     function resetUploadForm(){
-        document.querySelector('#nombre').value = "";
-        document.querySelector('#apellido').value = "";
-         document.querySelector('#matricula').value = "";
+        document.querySelector('.nombreInput').value = "";
+        document.querySelector('.apellidoInput').value = "";
+         document.querySelector('.matriculaInput').value = "";
 
     }
 

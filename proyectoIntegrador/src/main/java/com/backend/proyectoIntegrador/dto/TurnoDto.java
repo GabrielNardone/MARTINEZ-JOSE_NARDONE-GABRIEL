@@ -1,6 +1,5 @@
 package com.backend.proyectoIntegrador.dto;
 
-import com.backend.proyectoIntegrador.entity.Turno;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.time.LocalDateTime;
@@ -8,47 +7,50 @@ import java.time.LocalDateTime;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TurnoDto {
 
-    private String paciente;
-    private String odontologo;
-    private LocalDateTime fecha;
+    private Long id;
+    private LocalDateTime fechaAsistencia;
+    private PacienteDto pacienteDto;
+    private OdontologoDto odontologoDto;
 
-    public TurnoDto(String paciente, String odontologo, LocalDateTime fecha) {
-        this.paciente = paciente;
-        this.odontologo = odontologo;
-        this.fecha = fecha;
+
+    public TurnoDto(Long id, LocalDateTime fechaAsistencia, PacienteDto pacienteDto, OdontologoDto odontologoDto) {
+        this.id = id;
+        this.fechaAsistencia = fechaAsistencia;
+        this.pacienteDto = pacienteDto;
+        this.odontologoDto = odontologoDto;
     }
 
-    public TurnoDto() {
+    public TurnoDto() {}
 
+    public Long getId() {
+        return id;
     }
 
-    public String getPaciente() {
-        return paciente;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setPaciente(String paciente) {
-        this.paciente = paciente;
+    public PacienteDto getPacienteDto() {
+        return pacienteDto;
     }
 
-    public String getOdontologo() {
-        return odontologo;
+    public void setPacienteDto(PacienteDto pacienteDto) {
+        this.pacienteDto = pacienteDto;
     }
 
-    public void setOdontologo(String odontologo) {
-        this.odontologo = odontologo;
+    public OdontologoDto getOdontologoDto() {
+        return odontologoDto;
     }
 
-    public LocalDateTime getFecha() {
-        return fecha;
+    public void setOdontologoDto(OdontologoDto odontologoDto) {
+        this.odontologoDto = odontologoDto;
     }
 
-    public void setFecha(LocalDateTime fecha) {
-        this.fecha = fecha;
+    public LocalDateTime getFechaAsistencia() {
+        return fechaAsistencia;
     }
 
-    public static TurnoDto fromTurno(Turno turno) {
-        String paciente = turno.getPaciente().getNombre() + " " + turno.getPaciente().getApellido();
-        String odontologo = turno.getOdontologo().getNombre() + " " + turno.getOdontologo().getApellido();
-        return new TurnoDto(paciente, odontologo, turno.getFechayhora());
+    public void setFechaAsistencia(LocalDateTime fechaAsistencia) {
+        this.fechaAsistencia = fechaAsistencia;
     }
 }

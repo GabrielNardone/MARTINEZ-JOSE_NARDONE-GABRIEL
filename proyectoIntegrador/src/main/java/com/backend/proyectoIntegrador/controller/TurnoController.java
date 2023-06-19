@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+@CrossOrigin
 @RestController
 @RequestMapping("/dates")
 public class TurnoController {
@@ -19,7 +19,7 @@ public class TurnoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<TurnoDto> buscarTurnoPorId(@PathVariable int id) {
+    public ResponseEntity<TurnoDto> buscarTurnoPorId(@PathVariable Long id) {
         ResponseEntity<TurnoDto> respuesta;
         TurnoDto turnoDto = turnoService.buscarTurnoPorId(id);
         if (turnoDto != null) respuesta = new ResponseEntity<>(turnoDto, null, HttpStatus.OK);
@@ -37,7 +37,7 @@ public class TurnoController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public void eliminarTurno(@PathVariable int id) {
+    public void eliminarTurno(@PathVariable Long id) {
         turnoService.eliminarTurno(id);
     }
 

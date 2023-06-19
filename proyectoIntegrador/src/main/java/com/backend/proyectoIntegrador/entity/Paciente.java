@@ -1,44 +1,50 @@
 package com.backend.proyectoIntegrador.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import javax.persistence.*;
+import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
+@Entity
+@Table(name = "PATIENTS")
 public class Paciente {
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Size(max = 50, message = "The name should have a maximun of 50 characters")
+    @NotNull
     private String nombre;
-    private String apellido;
+
+    @Size(max = 50, message = "The last name should have a maximun of 50 characters")
+    @NotNull
+    private String Apellido;
+    @Pattern(regexp = "[/d]")
+    @Size(max = 12)
     private String dni;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @FutureOrPresent
     private LocalDate fechaIngreso;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "domicilio_id")
     private Domicilio domicilio;
-    private Odontologo odontologo;
 
     public Paciente() {
     }
 
-    public Paciente(int id, String nombre, String apellido, String dni, LocalDate fechaIngreso, Domicilio domicilio, Odontologo odontologo) {
-        this.id = id;
+    public Paciente(String nombre, String apellido, LocalDate fechaIngreso, Domicilio domicilio) {
         this.nombre = nombre;
-        this.apellido = apellido;
-        this.dni = dni;
+        Apellido = apellido;
         this.fechaIngreso = fechaIngreso;
         this.domicilio = domicilio;
-        this.odontologo = odontologo;
     }
 
-    public Paciente(String nombre, String apellido, String dni, LocalDate fechaIngreso, Domicilio domicilio, Odontologo odontologo) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.dni = dni;
-        this.fechaIngreso = fechaIngreso;
-        this.domicilio = domicilio;
-        this.odontologo = odontologo;
-    }
-
-    public int getId() {
+    public Long getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getNombre() {
@@ -50,19 +56,11 @@ public class Paciente {
     }
 
     public String getApellido() {
-        return apellido;
+        return Apellido;
     }
 
     public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
-    public String getDni() {
-        return dni;
-    }
-
-    public void setDni(String dni) {
-        this.dni = dni;
+        Apellido = apellido;
     }
 
     public LocalDate getFechaIngreso() {
@@ -81,16 +79,11 @@ public class Paciente {
         this.domicilio = domicilio;
     }
 
-    public Odontologo getOdontologo() {
-        return odontologo;
+    public String getDni() {
+        return dni;
     }
 
-    public void setOdontologo(Odontologo odontologo) {
-        this.odontologo = odontologo;
-    }
-
-    @Override
-    public String toString() {
-        return "Id: " + id + " - Nombre: " + nombre + " - Apellido: " + apellido + " - DNI: " + dni + " - Fechas de ingreso: " + fechaIngreso + " - Domicilio: " + domicilio;
+    public void setDni(String dni) {
+        this.dni = dni;
     }
 }

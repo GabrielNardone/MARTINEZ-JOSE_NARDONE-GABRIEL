@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin
 @RestController
 @RequestMapping("/patients")
 public class PacienteController {
@@ -48,7 +48,7 @@ public class PacienteController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PacienteDto> buscarPacientePorId(@PathVariable int id) {
+    public ResponseEntity<PacienteDto> buscarPacientePorId(@PathVariable Long id) {
         ResponseEntity<PacienteDto> respuesta;
         PacienteDto pacienteDto = pacienteService.buscarPacientePorId(id);
         if (pacienteDto != null) respuesta = new ResponseEntity<>(pacienteDto, null, HttpStatus.OK);
@@ -57,7 +57,7 @@ public class PacienteController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public void eliminarPaciente(@PathVariable int id) {
+    public void eliminarPaciente(@PathVariable Long id) {
         pacienteService.eliminarPaciente(id);
     }
 }
