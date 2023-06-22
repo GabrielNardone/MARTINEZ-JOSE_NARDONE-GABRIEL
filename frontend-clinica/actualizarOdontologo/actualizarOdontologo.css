@@ -5,19 +5,13 @@
     font-family: 'Montserrat', Verdana, sans-serif;
 }
 
-html {
-    font-size: 62.5%;
-}
-
 body {
-    font-size: 1.9rem;
     background: url(/img/bkgrnd.jpg);
     background-attachment: fixed;
     background-size: cover;
 }
 
 .header .navi {
-
     top: 0;
     left: 0;
     width: 100%;
@@ -26,37 +20,37 @@ body {
     justify-content: space-between;
     align-items: center;
     z-index: 99;
-
-
 }
 
 .logo {
     padding-left: 5px;
     color: antiquewhite;
-    font-size: 2.5rem;
     font-weight: 500;
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    gap: 1vw;
+}
 
+.logo img {
+    width: 30px;
 }
 
 .navigation a {
     position: relative;
-    font-size: 1.5rem;
     color: antiquewhite;
     text-decoration: none;
     font-weight: 500;
     margin-left: 40px;
-
 }
 
 .navigation .btnlogin {
-    width: 130px;
-    height: 50px;
+    padding: 10px;
     background: transparent;
     border: 2px solid antiquewhite;
     outline: none;
     border-radius: 6px;
     cursor: pointer;
-    font-size: 1.5rem;
     color: antiquewhite;
     font-weight: 500;
     margin-left: 40px;
@@ -86,13 +80,24 @@ body {
     transform: scaleX(1);
 }
 
-.registrarForm,
+section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.formBuscar {
+    width: 50%;
+    min-width: 300px;
+    background: rgb(0, 0, 0, 0.491);
+    padding: 20px;
+    color: antiquewhite;
+}
 .formActualizar {
     width: 50%;
     min-width: 300px;
     background: rgb(0, 0, 0, 0.491);
-    margin: auto;
-    margin-top: 50px;
+    margin-top: 15px;
     padding: 20px;
     color: antiquewhite;
 
@@ -115,7 +120,7 @@ h2 {
     outline: none;
     border: none;
     border-bottom: 2px solid;
-    font-size: 1.4rem;
+    font-size: 1rem;
     margin-bottom: 15px;
     color: antiquewhite;
 }
@@ -123,12 +128,12 @@ h2 {
 
 .form__label {
     display: block;
-    font-size: 1.6rem;
+    font-size: 1.2rem;
     font-weight: 300;
     padding-bottom: 5px;
 }
 
-.actualizar, .registrar {
+.actualizar {
     width: 100%;
     height: 50px;
     background-color: #2755c2;
@@ -137,7 +142,7 @@ h2 {
     border: none;
     color: antiquewhite;
     text-align: center;
-    font-size: 1.6rem;
+    font-size: 1.2rem;
     margin: 20px 0 20px 0;
     cursor: pointer;
     transition: all .5s ease;
