@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface IOdontologoService {
 
-    OdontologoDto buscarOdontologoPorId(int id);
+    OdontologoDto buscarOdontologoPorId(Long id);
 
     List<OdontologoDto> listarOdontologos();
 
@@ -15,5 +15,5 @@ public interface IOdontologoService {
 
     OdontologoDto actualizarOdontologo(Odontologo odontologo);
 
-    void eliminarOdontologo(int id);
+    void eliminarOdontologo(Long id);
 }

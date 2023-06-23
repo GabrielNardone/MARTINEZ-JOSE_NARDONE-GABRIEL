@@ -2,6 +2,7 @@ package com.backend.proyectoIntegrador.controller;
 
 import com.backend.proyectoIntegrador.dto.PacienteDto;
 import com.backend.proyectoIntegrador.entity.Paciente;
+import com.backend.proyectoIntegrador.exceptions.ResourceNotFoundException;
 import com.backend.proyectoIntegrador.service.IPacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -57,7 +58,7 @@ public class PacienteController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public void eliminarPaciente(@PathVariable Long id) {
+    public void eliminarPaciente(@PathVariable Long id) throws ResourceNotFoundException {
         pacienteService.eliminarPaciente(id);
     }
 }

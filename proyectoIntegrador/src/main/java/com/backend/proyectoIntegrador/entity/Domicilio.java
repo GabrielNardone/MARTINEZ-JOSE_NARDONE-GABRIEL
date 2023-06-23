@@ -1,7 +1,14 @@
 package com.backend.proyectoIntegrador.entity;
 
+import javax.persistence.*;
+
+
+@Entity
+@Table(name = "DOMICILIOS")
 public class Domicilio {
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String calle;
     private int numero;
     private String localidad;
@@ -10,13 +17,6 @@ public class Domicilio {
     public Domicilio() {
     }
 
-    public Domicilio(int id, String calle, int numero, String localidad, String provincia) {
-        this.id = id;
-        this.calle = calle;
-        this.numero = numero;
-        this.localidad = localidad;
-        this.provincia = provincia;
-    }
 
     public Domicilio(String calle, int numero, String localidad, String provincia) {
         this.calle = calle;
@@ -25,12 +25,8 @@ public class Domicilio {
         this.provincia = provincia;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getCalle() {
@@ -65,8 +61,5 @@ public class Domicilio {
         this.provincia = provincia;
     }
 
-    @Override
-    public String toString() {
-        return "Id: " + id + " - Calle: " + calle + " - Numero: " + numero + " - Localidad: " + localidad + " - Provincia: " + provincia;
-    }
+
 }

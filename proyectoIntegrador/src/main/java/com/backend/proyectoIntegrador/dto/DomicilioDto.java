@@ -4,19 +4,21 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class DomicilioDto {
+    private Long id;
     private String calle;
     private int numero;
     private String localidad;
     private String provincia;
 
-    public DomicilioDto(String calle, int numero, String localidad, String provincia) {
+    public DomicilioDto() {
+    }
+
+    public DomicilioDto(Long id, String calle, int numero, String localidad, String provincia) {
+        this.id = id;
         this.calle = calle;
         this.numero = numero;
         this.localidad = localidad;
         this.provincia = provincia;
-    }
-
-    public DomicilioDto() {
     }
 
     public String getCalle() {
@@ -49,5 +51,13 @@ public class DomicilioDto {
 
     public void setProvincia(String provincia) {
         this.provincia = provincia;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

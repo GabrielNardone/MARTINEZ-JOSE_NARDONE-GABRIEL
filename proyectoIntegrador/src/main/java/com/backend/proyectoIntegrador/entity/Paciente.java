@@ -1,46 +1,53 @@
 package com.backend.proyectoIntegrador.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-
+import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
-import javax.validation.constraints.FutureOrPresent;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "PATIENTS")
+@Table(name = "PACIENTES")
 public class Paciente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Size(max = 50, message = "The name should have a maximun of 50 characters")
-    @NotNull
+    @Size(max = 50, message = "El nombre debe tener hasta 50 caracteres")
+    @NotNull(message = "El nombre el paciente no puede ser nulo")
+    @NotBlank(message = "Debe especificarse el nombre del paciente")
     private String nombre;
 
-    @Size(max = 50, message = "The last name should have a maximun of 50 characters")
-    @NotNull
-    private String Apellido;
-    @Pattern(regexp = "[/d]")
-    @Size(max = 12)
+
+    @Size(max = 50, message = "El apellido debe tener hasta 50 caracteres")
+    @NotNull(message = "El apellido el paciente no puede ser nulo")
+    @NotBlank(message = "Debe especificarse el apellido del paciente")
+    private String apellido;
+    @Pattern(regexp = "\\d+", message = "El campo dni sólo admite caracteres numéricos")
+    @Length(max = 12)
+    @NotBlank(message = "Debe especificarse el dni del paciente")
     private String dni;
+
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    @FutureOrPresent
+    @FutureOrPresent(message = "La fecha no puede ser anterior al día de hoy")
+    @NotNull(message = "Debe especificarse la fecha de ingreso del paciente")
     private LocalDate fechaIngreso;
+
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "domicilio_id")
     private Domicilio domicilio;
 
+
     public Paciente() {
     }
 
-    public Paciente(String nombre, String apellido, LocalDate fechaIngreso, Domicilio domicilio) {
+    public Paciente(String nombre, String apellido, String dni, LocalDate fechaIngreso, Domicilio domicilio) {
         this.nombre = nombre;
-        Apellido = apellido;
+        this.apellido = apellido;
+        this.dni = dni;
         this.fechaIngreso = fechaIngreso;
         this.domicilio = domicilio;
+
     }
 
     public Long getId() {
@@ -56,11 +63,19 @@ public class Paciente {
     }
 
     public String getApellido() {
-        return Apellido;
+        return apellido;
     }
 
     public void setApellido(String apellido) {
-        Apellido = apellido;
+        this.apellido = apellido;
+    }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
     }
 
     public LocalDate getFechaIngreso() {
@@ -79,11 +94,4 @@ public class Paciente {
         this.domicilio = domicilio;
     }
 
-    public String getDni() {
-        return dni;
-    }
-
-    public void setDni(String dni) {
-        this.dni = dni;
-    }
 }

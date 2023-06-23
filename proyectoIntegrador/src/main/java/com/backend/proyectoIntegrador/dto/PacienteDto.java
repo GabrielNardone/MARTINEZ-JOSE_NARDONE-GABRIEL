@@ -1,37 +1,32 @@
 package com.backend.proyectoIntegrador.dto;
 
-
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.time.LocalDate;
 
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PacienteDto {
+
     private Long id;
     private String nombre;
     private String apellido;
     private String dni;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate fechaIngreso;
-    private DomicilioDto domicilioDto;
+    private DomicilioDto domicilio;
 
-    public PacienteDto(Long id, String nombre, String apellido, String dni, LocalDate fechaIngreso, DomicilioDto domicilioDto) {
+    public PacienteDto() {
+    }
+
+    public PacienteDto(Long id, String nombre, String apellido, String dni, LocalDate fechaIngreso, DomicilioDto domicilio) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
         this.fechaIngreso = fechaIngreso;
-        this.domicilioDto = domicilioDto;
-    }
-
-    public PacienteDto() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+        this.domicilio = domicilio;
     }
 
     public String getNombre() {
@@ -66,11 +61,20 @@ public class PacienteDto {
         this.fechaIngreso = fechaIngreso;
     }
 
-    public DomicilioDto getDomicilioDto() {
-        return domicilioDto;
+    public DomicilioDto getDomicilio() {
+        return domicilio;
     }
 
-    public void setDomicilioDto(DomicilioDto domicilioDto) {
-        this.domicilioDto = domicilioDto;
+    public void setDomicilio(DomicilioDto domicilio) {
+        this.domicilio = domicilio;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
 }
