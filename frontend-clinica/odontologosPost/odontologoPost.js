@@ -1,11 +1,19 @@
 window.addEventListener('load', function () {
 
+    //* VARIABLES------------------------------------------------
     const formulario = document.querySelector('.registrarForm');
     const nombre = document.querySelector('.nombreInput')
     const apellido = document.querySelector('.apellidoInput')
     const matricula = document.querySelector('.matriculaInput')
 
-    
+    //* VALIDACIONES---------------------------------------------
+    nombre.addEventListener("blur", (event) => isEmpty(`⚠️ Se requiere que ingrese un nombre`, event))
+    apellido.addEventListener("blur", (event) => isEmpty(`⚠️ Se requiere que ingrese un apellido`, event))
+    matricula.addEventListener("blur", (event) => isEmpty(`⚠️ Se requiere que ingrese una matrícula`, event))
+
+    matricula.addEventListener("input", (event) => validarMatricula(event))
+
+    //* FETCH----------------------------------------------------
     formulario.addEventListener('submit', function (event) {
         event.preventDefault()
         
@@ -37,11 +45,10 @@ window.addEventListener('load', function () {
             })
     });
 
-
+    //* RESET FUNCTION---------------------------------------------
     function resetUploadForm() {
         document.querySelector('.nombreInput').value = "";
         document.querySelector('.apellidoInput').value = "";
         document.querySelector('.matriculaInput').value = "";
-
     }
 });
