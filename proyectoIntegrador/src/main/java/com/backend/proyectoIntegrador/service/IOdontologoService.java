@@ -2,6 +2,7 @@ package com.backend.proyectoIntegrador.service;
 
 import com.backend.proyectoIntegrador.dto.OdontologoDto;
 import com.backend.proyectoIntegrador.entity.Odontologo;
+import com.backend.proyectoIntegrador.exceptions.ResourceNotFoundException;
 
 import java.util.List;
 
@@ -15,5 +16,5 @@ public interface IOdontologoService {
 
     OdontologoDto actualizarOdontologo(Odontologo odontologo);
 
-    void eliminarOdontologo(Long id);
+    void eliminarOdontologo(Long id) throws ResourceNotFoundException;
 }

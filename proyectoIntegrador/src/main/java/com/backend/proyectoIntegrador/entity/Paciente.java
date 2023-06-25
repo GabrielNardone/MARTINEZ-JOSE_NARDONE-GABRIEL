@@ -2,6 +2,7 @@ package com.backend.proyectoIntegrador.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.time.LocalDate;

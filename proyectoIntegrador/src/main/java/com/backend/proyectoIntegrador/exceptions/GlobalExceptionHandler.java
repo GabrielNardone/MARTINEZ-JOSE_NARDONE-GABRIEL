@@ -1,7 +1,5 @@
 package com.backend.proyectoIntegrador.exceptions;
 
-import com.backend.proyectoIntegrador.exceptions.BadRequestException;
-import com.backend.proyectoIntegrador.exceptions.ResourceNotFoundException;
 import com.google.gson.JsonParseException;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
@@ -18,7 +16,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler({ResourceNotFoundException.class})
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public Map<String, String> procesarNotFoundException(ResourceNotFoundException exception){
+    public Map<String, String> procesarNotFoundException(ResourceNotFoundException exception) {
         Map<String, String> exceptionMessage = new HashMap<>();
         exceptionMessage.put("message", "Recurso no encontrado: " + exception.getMessage());
         return exceptionMessage;
@@ -26,7 +24,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler({MethodArgumentNotValidException.class})
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public Map<String, String> procesarValidationException(MethodArgumentNotValidException exception){
+    public Map<String, String> procesarValidationException(MethodArgumentNotValidException exception) {
         Map<String, String> exceptionMessage = new HashMap<>();
         exception.getBindingResult().getAllErrors().forEach((error) -> {
             String fieldName = ((FieldError) error).getField();
@@ -35,7 +33,6 @@ public class GlobalExceptionHandler {
         });
         return exceptionMessage;
     }
-
 
 
     @ExceptionHandler({BadRequestException.class})

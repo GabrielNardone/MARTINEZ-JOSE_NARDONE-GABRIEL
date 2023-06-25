@@ -4,9 +4,8 @@ window.addEventListener('load', function () {
     const url = "http://localhost:8080/dentist";
     const section = document.querySelector("section")
     const backButton = document.querySelector(".back");
-    const queryButton = document.querySelector(".queryBtn");
-    const queryInput = document.querySelector("input");
-    const updateBtn = document.querySelectorAll(".actualizarBtn")
+    const queryForm = document.querySelector(".queryForm");
+    const queryInput = document.querySelector(".idSearchInput");
 
     //*FETCH A LA API ----------------
     const settings = {
@@ -21,14 +20,21 @@ window.addEventListener('load', function () {
         .then(data => data.map(
             elem => {
                 section.innerHTML += `<div class="cartas">
-                     <p>Nombre: ${elem.nombre}</p>
-                     <p>Apellido: ${elem.apellido}</p>
-                     <p>Matrícula: ${elem.matricula}</p>
+                     <span>Nombre: ${elem.nombre}</span>
+                     <span>Apellido: ${elem.apellido}</span>
+                     <span>Matrícula: ${elem.matricula}</span>
                      <button class="actualizarBtn"> Actualizar </button>
                  </div>`
+
+                const updateBtn = document.querySelectorAll(".actualizarBtn")
+
+                //*BOTÓN PARA ACTUALIZAR
+                updateBtn.forEach(elem => elem.addEventListener("click", function () {
+                    location.replace("actualizarOdontologo.html")
+                }))
             })
         )
-        .catch(err => console.log(err))
+        .catch(err => section.innerHTML = `<span class="errorMensaje">There isn´t any dentist</span>`)
 
 
     //*BOTÓN PARA REGRESAR A LA PÁGINA ANTERIOR -------------
@@ -36,36 +42,45 @@ window.addEventListener('load', function () {
         location.replace("odontologoPost.html")
     })
 
-    //*BOTÓN PARA ACTUALIZAR
-    updateBtn.forEach(elem => elem.addEventListener("click", function () {
-        location.replace("actualizarOdontologo.html")
-    }))
 
     //*BOTÓN PARA BUSCAR
-    queryButton.addEventListener("submit", function () {
+    queryForm.addEventListener("submit", function (event) {
 
-        const payload = {
-            matricula: queryInput.value.trim()
+        event.preventDefault();
+
+        const id = queryInput.value.trim()
+
+        if (id === "") {
+            return section.innerHTML = `<span class="errorMensaje">You have to select a number</span>`
         }
 
         const settings = {
             method: 'GET',
-            body: JSON.stringify(payload),
             headers: {
                 'Content-Type': 'application/json',
             },
         }
 
-        fetch(url, settings)
+        fetch(`${url}/${id}`, settings)
             .then(response => response.json())
-            .then(data => section.innerHTML += `<div class="cartas">
-                         <p>Nombre: ${data.nombre}</p>
-                         <p>Apellido: ${data.apellido}</p>
-                         <p>Matrícula: ${data.matricula}</p>
-                         <button class="actualizarBtn"> Actualizar </button>
-                     </div>`
+            .then(data => {
+                section.innerHTML = 
+                `<div class="cartas">
+                   <span>Nombre: ${data.nombre}</span>
+                   <span>Apellido: ${data.apellido}</span>
+                   <span>Matrícula: ${data.matricula}</span>
+                   <button class="actualizarBtn"> Actualizar </button>
+                </div>`
+
+                const updateBtn = document.querySelector(".actualizarBtn")
+
+                //*BOTÓN PARA ACTUALIZAR
+                updateBtn.addEventListener("click", function () {
+                    location.replace("actualizarOdontologo.html")
+                })
+            }
             )
-            .catch(err => console.log(err))
+            .catch(err => section.innerHTML = `<span class="errorMensaje">Id doesn´t exist</span>`)
     })
 
 })

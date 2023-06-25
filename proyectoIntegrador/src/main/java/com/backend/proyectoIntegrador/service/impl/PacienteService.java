@@ -1,7 +1,6 @@
 package com.backend.proyectoIntegrador.service.impl;
 
 
-
 import com.backend.proyectoIntegrador.dto.DomicilioDto;
 import com.backend.proyectoIntegrador.dto.PacienteDto;
 import com.backend.proyectoIntegrador.entity.Domicilio;
@@ -44,7 +43,7 @@ public class PacienteService implements IPacienteService {
                 })
                 .toList();
 
-        LOGGER.info("Lista de todos los pacientes: {}", JsonPrinter.toString(pacienteDtos));
+        LOGGER.info("All patients list: {}", JsonPrinter.toString(pacienteDtos));
         return pacienteDtos;
     }
 
@@ -56,9 +55,9 @@ public class PacienteService implements IPacienteService {
             DomicilioDto domicilioDto = objectMapper.convertValue(pacienteBuscado.getDomicilio(), DomicilioDto.class);
             pacienteDto = objectMapper.convertValue(pacienteBuscado, PacienteDto.class);
             pacienteDto.setDomicilio(domicilioDto);
-            LOGGER.info("Paciente encontrado: {}", JsonPrinter.toString(pacienteDto));
+            LOGGER.info("Patient found: {}", JsonPrinter.toString(pacienteDto));
 
-        } else LOGGER.info("El id no se encuentra registrado en la base de datos");
+        } else LOGGER.info("The patient doesn´t exist");
 
         return pacienteDto;
     }
@@ -70,7 +69,7 @@ public class PacienteService implements IPacienteService {
         PacienteDto pacienteDtoNuevo = objectMapper.convertValue(pacienteNuevo, PacienteDto.class);
         pacienteDtoNuevo.setDomicilio(domicilioDto);
 
-        LOGGER.info("Nuevo paciente registrado con exito: {}", JsonPrinter.toString(pacienteDtoNuevo));
+        LOGGER.info("Patient saved: {}", JsonPrinter.toString(pacienteDtoNuevo));
 
         return pacienteDtoNuevo;
     }
@@ -87,24 +86,21 @@ public class PacienteService implements IPacienteService {
             DomicilioDto domicilioDto = objectMapper.convertValue(pacienteAActualizar.getDomicilio(), DomicilioDto.class);
             pacienteActualizadoDto = objectMapper.convertValue(pacienteAActualizar, PacienteDto.class);
             pacienteActualizadoDto.setDomicilio(domicilioDto);
-            LOGGER.info("Paciente actualizado con exito: {}", JsonPrinter.toString(pacienteActualizadoDto));
+            LOGGER.info("Patient updated: {}", JsonPrinter.toString(pacienteActualizadoDto));
 
-        } else LOGGER.error("No fue posible actualizar los datos ya que el paciente no se encuentra registrado");
+        } else LOGGER.error("The patient doesn´t exist");
 
         return pacienteActualizadoDto;
-
     }
 
     @Override
     public void eliminarPaciente(Long id) throws ResourceNotFoundException {
-        if(buscarPacientePorId(id) != null){
+        if (buscarPacientePorId(id) != null) {
             pacienteRepository.deleteById(id);
-            LOGGER.warn("Se ha eliminado el paciente con id {}", id);
+            LOGGER.warn("The patient was deleted");
         } else {
-            LOGGER.error("No se ha encontrado el paciente con id " + id);
-            throw new ResourceNotFoundException("No se ha encontrado el paciente con id " + id);
-
+            LOGGER.error("The patient doesn´t exist");
+            throw new ResourceNotFoundException("The patient doesn´t exist");
         }
-
     }
 }

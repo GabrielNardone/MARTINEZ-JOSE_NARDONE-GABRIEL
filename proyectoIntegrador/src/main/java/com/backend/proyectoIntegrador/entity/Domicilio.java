@@ -1,6 +1,9 @@
 package com.backend.proyectoIntegrador.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 
 @Entity
@@ -11,7 +14,15 @@ public class Domicilio {
     private Long id;
     private String calle;
     private int numero;
+
+    @Size(max = 30, message = "La localidad debe tener hasta 30 caracteres")
+    @NotNull(message = "La localidad no puede ser nulo")
+    @NotBlank(message = "Debe especificarse el nombre de la localidad")
     private String localidad;
+
+    @Size(max = 30, message = "La localidad debe tener hasta 30 caracteres")
+    @NotNull(message = "La provincia no puede ser nulo")
+    @NotBlank(message = "Debe especificarse el nombre de la provincia")
     private String provincia;
 
     public Domicilio() {

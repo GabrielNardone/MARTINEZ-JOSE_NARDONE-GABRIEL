@@ -9,56 +9,42 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
-@CrossOrigin
+
+@CrossOrigin(origins = "http://127.0.0.1:5500")
 @RestController
 @RequestMapping("/patients")
 public class PacienteController {
     private IPacienteService pacienteService;
-
     @Autowired
     public PacienteController(IPacienteService pacienteService) {
         this.pacienteService = pacienteService;
     }
 
     @PostMapping("/register")
-    public ResponseEntity<PacienteDto> registrarPaciente(@RequestBody Paciente paciente) {
-        ResponseEntity<PacienteDto> respuesta;
-        PacienteDto pacienteDto = pacienteService.guardarPaciente(paciente);
-        if (pacienteDto != null) respuesta = new ResponseEntity<>(pacienteDto, null, HttpStatus.CREATED);
-        else respuesta = ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-        return respuesta;
+    public ResponseEntity<PacienteDto> registrarPaciente(@Valid @RequestBody Paciente paciente) {
+        return new ResponseEntity<>(pacienteService.guardarPaciente(paciente), null, HttpStatus.CREATED);
     }
 
     @PutMapping("/update")
-    public ResponseEntity<PacienteDto> actualizarPaciente(@RequestBody Paciente paciente) {
-        ResponseEntity<PacienteDto> respuesta;
-        PacienteDto pacienteDto = pacienteService.actualizarPaciente(paciente);
-        if (pacienteDto != null) respuesta = new ResponseEntity<>(pacienteDto, null, HttpStatus.OK);
-        else respuesta = ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-        return respuesta;
+    public ResponseEntity<PacienteDto> actualizarPaciente(@Valid @RequestBody Paciente paciente) {
+        return new ResponseEntity<>(pacienteService.actualizarPaciente(paciente), null, HttpStatus.OK);
     }
 
     @GetMapping()
-    public ResponseEntity<List<PacienteDto>> listarTodos() {
-        ResponseEntity<List<PacienteDto>> respuesta;
-        List<PacienteDto> lista = pacienteService.listarPacientes();
-        if (lista != null) respuesta = new ResponseEntity<>(lista, null, HttpStatus.OK);
-        else respuesta = ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-        return respuesta;
+    public List<PacienteDto> listarTodos() {
+        return pacienteService.listarPacientes();
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<PacienteDto> buscarPacientePorId(@PathVariable Long id) {
-        ResponseEntity<PacienteDto> respuesta;
-        PacienteDto pacienteDto = pacienteService.buscarPacientePorId(id);
-        if (pacienteDto != null) respuesta = new ResponseEntity<>(pacienteDto, null, HttpStatus.OK);
-        else respuesta = ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-        return respuesta;
+        return new ResponseEntity<>(pacienteService.buscarPacientePorId(id), null, HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
-    public void eliminarPaciente(@PathVariable Long id) throws ResourceNotFoundException {
+    public ResponseEntity<?> eliminarPaciente(@PathVariable Long id) throws ResourceNotFoundException {
         pacienteService.eliminarPaciente(id);
+        return ResponseEntity.ok("Patient deleted");
     }
 }

@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class OdontologoDto {
 
     private Long id;
-
     private String matricula;
     private String nombre;
     private String apellido;
@@ -45,6 +44,7 @@ public class OdontologoDto {
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
+
     public Long getId() {
         return id;
     }

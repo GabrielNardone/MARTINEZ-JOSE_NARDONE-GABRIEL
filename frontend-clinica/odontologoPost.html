@@ -5,38 +5,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./odontologosPost/odontologoPost.css">
-    <script type="text/javascript" src="/odontologoPost.js"></script>
+    <script src="./odontologosPost/odontologoPost.js"></script>
     <title>Alta odontologo</title>
 </head>
 
 <body>
 
-    <div class="containter">
+    <div class="container">
 
         <header class="header">
             <div class="navi">
                 <h2 class="logo"><img src="/img/pngwing.com.png" alt="Logo">Clínica Odontológica</h2>
                 <nav class="navigation">
-                    <a href="#">Listar</a>
-                    <button class="btnlogin">Login</button>
+                    <a href="./listarTodos.html" class="btnListar">Listar</a>
                 </nav>
             </div>
         </header>
 
         <form action="submit" class="registrarForm">
+            
             <div class="title">
                 <h2>Agregar odontólogo</h2>
             </div>
 
-            <label for="name" class="form__label">Nombre:</label>
-            <input type="text" class="nombreInput" name="texto" placeholder="Ingrese el nombre" id="name" required>
+            <label for="nombre" class="form__label">Nombre:</label>
+            <input type="text" class="nombreInput" name="nombre" placeholder="Ingrese el nombre" required>
 
             <label for="apellido" class="form__label">Apellido:</label>
-            <input type="text" class="apellidoInput" name="apellido" placeholder="Ingrese el apellido" id="apellido"
-                required>
+            <input type="text" class="apellidoInput" name="apellido" placeholder="Ingrese el apellido" required>
 
             <label class="form__label" for="matricula">Matrícula:</label>
-            <input type="number" class="matriculaInput" id="matricula" placeholder="Ingrese la matrícula" required>
+            <input type="text" class="matriculaInput" name="matricula" placeholder="Ingrese la matrícula" required>
 
             <button type="submit" class="registrar">Registrar</button>
 
