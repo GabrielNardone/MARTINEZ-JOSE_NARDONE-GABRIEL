@@ -4,6 +4,7 @@ import com.backend.proyectoIntegrador.entity.Turno;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -21,7 +22,7 @@ public class TurnoDto {
         this.odontologoDto = odontologoDto;
     }
 
-    public TurnoDto() {
+    public TurnoDto(Long id, LocalDate fechaAsistencia, String paciente, String odontologo) {
     }
 
     public Long getId() {
@@ -59,6 +60,6 @@ public class TurnoDto {
     public static TurnoDto fromTurno(Turno turno) {
         String paciente = turno.getPaciente().getNombre() + " " + turno.getPaciente().getApellido();
         String odontologo = turno.getOdontologo().getNombre() + " " + turno.getOdontologo().getApellido();
-        return new TurnoDto(turno.getId(), turno.getFechaAsistencia().atStartOfDay(), paciente, odontologo);
+        return new TurnoDto(turno.getId(), turno.getFechaAsistencia(), paciente, odontologo);
     }
 }

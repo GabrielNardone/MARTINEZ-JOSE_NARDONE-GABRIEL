@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "TURNOS")
@@ -17,7 +18,7 @@ public class Turno {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     @FutureOrPresent(message = "La fecha no puede ser anterior al día de hoy")
     @NotNull(message = "Debe especificarse la fecha y hora del turno")
-    private LocalDate fechaAsistencia;
+    private LocalDateTime fechaAsistencia;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "paciente_id", nullable = false)
@@ -32,7 +33,7 @@ public class Turno {
     public Turno() {
     }
 
-    public Turno(Long id, LocalDate fechaAsistencia, Paciente paciente, Odontologo odontologo) {
+    public Turno(Long id, LocalDateTime fechaAsistencia, Paciente paciente, Odontologo odontologo) {
         this.id = id;
         this.fechaAsistencia = fechaAsistencia;
         this.paciente = paciente;
@@ -59,11 +60,11 @@ public class Turno {
         this.odontologo = odontologo;
     }
 
-    public LocalDate getFechaAsistencia() {
+    public LocalDateTime getFechaAsistencia() {
         return fechaAsistencia;
     }
 
-    public void setFechaAsistencia(LocalDate fechaAsistencia) {
+    public void setFechaAsistencia(LocalDateTime fechaAsistencia) {
         this.fechaAsistencia = fechaAsistencia;
     }
 }
