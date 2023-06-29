@@ -17,6 +17,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 
@@ -41,7 +42,7 @@ class TurnoServiceTest {
         Odontologo odontologo = objectMapper.convertValue(odontologoDto, Odontologo.class);
         Paciente paciente = objectMapper.convertValue(pacienteDto, Paciente.class);
 
-        Turno crearUnTurno = new Turno(LocalDateTime.now(), paciente, odontologo);
+        Turno crearUnTurno = new Turno(LocalDateTime.of(LocalDate.of(2023, 10, 1), LocalTime.of(12, 0)), paciente, odontologo);
         TurnoDto turnoDto = turnoService.guardarTurno(crearUnTurno);
 
         Assertions.assertNotNull(turnoDto);
