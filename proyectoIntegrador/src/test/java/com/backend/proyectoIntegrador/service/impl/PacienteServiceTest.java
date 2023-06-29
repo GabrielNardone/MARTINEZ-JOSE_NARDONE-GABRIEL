@@ -11,11 +11,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.time.LocalDate;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-
 class PacienteServiceTest {
 
     @Autowired
@@ -34,21 +33,21 @@ class PacienteServiceTest {
 
     @Test
     @Order(2)
-    void deberiaListarAlPaciente(){
+    void deberiaListarAlPaciente() {
         List<PacienteDto> pacienteDtos = pacienteService.listarPacientes();
         assertEquals(1, pacienteDtos.size());
     }
 
     @Test
     @Order(3)
-    void deberiaEliminarAlPacienteCreado()throws ResourceNotFoundException {
+    void deberiaEliminarAlPacienteCreado() throws ResourceNotFoundException {
         pacienteService.eliminarPaciente(1L);
         Assertions.assertThrows(ResourceNotFoundException.class, () -> pacienteService.eliminarPaciente(1L));
     }
 
     @Test
     @Order(4)
-    void deberiaRetornarLaListaVacia(){
+    void deberiaRetornarLaListaVacia() {
         List<PacienteDto> pacienteDtos = pacienteService.listarPacientes();
         Assertions.assertTrue(pacienteDtos.isEmpty());
     }

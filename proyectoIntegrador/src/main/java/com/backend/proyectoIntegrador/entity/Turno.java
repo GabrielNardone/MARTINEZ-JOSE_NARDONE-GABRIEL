@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import javax.persistence.*;
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -16,16 +15,16 @@ public class Turno {
     private Long id;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
-    @FutureOrPresent(message = "La fecha no puede ser anterior al día de hoy")
+    //@FutureOrPresent(message = "La fecha no puede ser anterior al día de hoy")
     @NotNull(message = "Debe especificarse la fecha y hora del turno")
     private LocalDateTime fechaAsistencia;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "paciente_id", nullable = false)
     @NotNull(message = "El paciente no puede ser nulo")
     private Paciente paciente;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "odontologo_id", nullable = false)
     @NotNull(message = "El odontologo no puede ser nulo")
     private Odontologo odontologo;
@@ -33,8 +32,7 @@ public class Turno {
     public Turno() {
     }
 
-    public Turno(Long id, LocalDateTime fechaAsistencia, Paciente paciente, Odontologo odontologo) {
-        this.id = id;
+    public Turno(LocalDateTime fechaAsistencia, Paciente paciente, Odontologo odontologo) {
         this.fechaAsistencia = fechaAsistencia;
         this.paciente = paciente;
         this.odontologo = odontologo;
